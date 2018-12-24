@@ -8,9 +8,13 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "vue": "^2.5.17",
+    "bootstrap": "^4.2.1",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "firebase": "^5.7.1",
+    "vue": "^2.5.21",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuexfire": "^2.3.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
@@ -31,10 +35,9 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/recommended",
       "@vue/airbnb"
     ],
-    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
     }
