@@ -6,6 +6,7 @@
       class="vote-options__button"
       :style="{ color: voteOptionsColors[option] }"
       type="icon"
+      @click="onOptionChoose(option)"
     >
       <i
         class="vote-options__button-icon"
@@ -36,13 +37,14 @@ export default {
   methods: {
     onOptionChoose(type) {
       console.log(type); // eslint-disable-line
+      this.$emit('voted', type);
     },
   },
 };
 </script>
 <style lang="scss">
 .vote-options {
-  padding: 20% 0;
+  padding: 10% 0;
 
   &__button {
     border-radius: 100px;

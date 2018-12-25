@@ -5,6 +5,8 @@
       loading ? 'loading' : '',
       type
     ]"
+    v-bind="$attrs"
+    v-on="$listeners"
   >
     <span v-if="label">
       {{ label }}
@@ -12,8 +14,10 @@
     <slot v-else />
   </button>
 </template>
+
 <script>
 export default {
+  inheritAttrs: false,
   props: {
     loading: {
       type: Boolean,

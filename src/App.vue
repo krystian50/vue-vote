@@ -40,7 +40,7 @@ export default {
   text-align: center;
 
   &__content {
-    height: 100%;
+    height: calc(100% - 56px);
     background-color: #343a40cc;
   }
 }

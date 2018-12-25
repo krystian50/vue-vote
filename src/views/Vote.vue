@@ -1,6 +1,8 @@
 <template>
   <div class="vote">
-    <VoteOptions />
+    <VoteOptions
+      @voted="onVoted"
+    />
   </div>
 </template>
 <script>
@@ -21,8 +23,8 @@ export default {
     ...mapMutations({
       addVote: ADD_VOTE,
     }),
-    onClick() {
-      this.addVote(new Vote('yes'));
+    onVoted(type) {
+      this.addVote(new Vote('randomUser', type));
     },
   },
 };
