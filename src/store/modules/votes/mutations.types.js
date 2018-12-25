@@ -1,1 +1,2 @@
-export const ADD_VOTE = 'votesAdd'; // eslint-disable-line
+export const ADD_VOTE = 'votesAdd';
+export const RESET_VOTES = 'votesReset';
