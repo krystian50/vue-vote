@@ -10,8 +10,7 @@
           :style="{ color: optionProps.color }"
         >
           <span class="score__item-value">
-            {{ groupedVotes && groupedVotes[optionProps.option] ?
-              groupedVotes[optionProps.option] : 0 }}
+            {{ groupedVotes && groupedVotes[optionProps.option] }}
           </span>
           <span class="score__item-label">
             {{ optionProps.label }}
