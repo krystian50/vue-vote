@@ -35,5 +35,8 @@ export default {
 <style lang="scss">
 .vote-options {
   padding: 10% 0;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-around;
 }
 </style>
