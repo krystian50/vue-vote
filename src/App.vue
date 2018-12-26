@@ -41,6 +41,7 @@ export default {
 
   &__content {
     height: calc(100% - 56px);
+    overflow: auto;
     background-color: #343a40cc;
   }
 }

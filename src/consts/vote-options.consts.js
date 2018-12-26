@@ -6,7 +6,7 @@ export const voteOptions = [
 
 export const voteOptionsLabels = {
   yes: 'Yes',
-  duno: 'I don\'t know',
+  duno: 'I\'m not sure',
   no: 'No',
 };
 

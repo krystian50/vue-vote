@@ -34,9 +34,13 @@ export default {
 </script>
 <style lang="scss">
 .vote-options {
-  padding: 10% 0;
+  padding: 2% 10%;
   width: 100%;
-  display: inline-flex;
+  display: flex;
   justify-content: space-around;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 </style>

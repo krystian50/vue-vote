@@ -1,5 +1,8 @@
 <template>
   <div class="vote">
+    <h1 class="vote__header">
+      Do you know?
+    </h1>
     <VoteOptions>
       <BaseButton
         slot-scope="optionProps"
@@ -56,20 +59,20 @@ export default {
     background-color: transparent;
     border-color: transparent;
     cursor: pointer;
-  }
 
-  &__button:focus {
-    outline: none;
+    &:focus {
+      outline: none;
+    }
   }
 
   &__button-icon {
     display: block;
     margin: 0 auto;
     color: inherit;
-  }
 
-  &__button-icon:active {
-    transform: scale(0.9);
+    &:active {
+      transform: scale(0.9);
+    }
   }
 
   &__button-label {
@@ -77,6 +80,12 @@ export default {
     text-align: center;
     width: 100%;
     margin-top: 10px;
+    font-size: 20px;
+  }
+
+  &__header {
+    font-size: 60px;
+    padding-top: 50px;
   }
 }
 </style>
