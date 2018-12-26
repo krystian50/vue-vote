@@ -5,7 +5,7 @@
         slot-scope="optionProps"
         class="vote__button"
         :style="{ color: optionProps.color }"
-        type="icon"
+        variant="icon"
         @click="onVoted(optionProps.option)"
       >
         <i

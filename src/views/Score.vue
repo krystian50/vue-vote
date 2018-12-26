@@ -1,23 +1,33 @@
 <template>
-  <div class="score">
-    Score
-    <VoteOptions v-if="!loading">
+  <div
+    v-if="!loading"
+    class="score"
+  >
+    <VoteOptions>
       <template slot-scope="optionProps">
-        <span class="score__group-item-value">
-          {{ groupedVotes && groupedVotes[optionProps.option] ?
-            groupedVotes[optionProps.option] : 0 }}
-        </span>
-        <span class="score__group-item-key">
-          {{ optionProps.label }}
-        </span>
+        <div
+          class="score__item"
+          :style="{ color: optionProps.color }"
+        >
+          <span class="score__item-value">
+            {{ groupedVotes && groupedVotes[optionProps.option] ?
+              groupedVotes[optionProps.option] : 0 }}
+          </span>
+          <span class="score__item-label">
+            {{ optionProps.label }}
+          </span>
+        </div>
       </template>
     </VoteOptions>
     <BaseButton
-      type="text"
+      variant="text"
       label="Reset"
       @click="reset()"
     />
   </div>
+  <span v-else>
+    Loading
+  </span>
 </template>
 
 <script>
@@ -43,3 +53,20 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.score {
+  &__item-value,
+  &__item-label {
+    display: block;
+  }
+
+  &__item-value {
+    font-size: 60px;
+  }
+
+  &__item-label {
+    font-size: 33px;
+  }
+}
+</style>

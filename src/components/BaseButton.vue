@@ -3,19 +3,21 @@
     class="button"
     :class="[
       loading ? 'loading' : '',
-      type
+      variant
     ]"
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <span v-if="label">
+    <template v-if="label">
       {{ label }}
-    </span>
+    </template>
     <slot v-else />
   </button>
 </template>
 
 <script>
+const buttonTypes = ['text', 'icon'];
+
 export default {
   inheritAttrs: false,
   props: {
@@ -24,9 +26,10 @@ export default {
       required: false,
       default: false,
     },
-    type: {
+    variant: {
       type: String,
       required: true,
+      validator: value => buttonTypes.indexOf(value) !== -1,
     },
     label: {
       type: String,
@@ -36,3 +39,15 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.button {
+  &.text {
+    background-color: #9c0304;
+    padding: 15px 50px;
+    color: #ffffff;
+    border: none;
+    font-size: 21px;
+    outline: none;
+  }
+}
+</style>
