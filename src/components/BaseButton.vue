@@ -8,10 +8,9 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <template v-if="label">
+    <slot>
       {{ label }}
-    </template>
-    <slot v-else />
+    </slot>
   </button>
 </template>
 
