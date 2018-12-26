@@ -18,5 +18,5 @@ const isEmpty = refValue => !refValue || isNull(refValue['.value']);
 
 export default {
   groupedVotes: state => (isEmpty(state.votes) ? null : groupVotes(state.votes)),
-  isLoading: state => isUndefined(state.votes),
+  loading: state => isUndefined(state.votes),
 };
