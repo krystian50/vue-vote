@@ -1,39 +1,34 @@
 <template>
   <div class="vote-options">
-    <BaseButton
-      v-for="option of voteOptions"
-      :key="option"
-      class="vote-options__button"
-      :style="{ color: voteOptionsColors[option] }"
-      type="icon"
-      @click="onOptionChoose(option)"
-    >
-      <i
-        class="vote-options__button-icon"
-        :style="{ content: `url(${require('../../assets/' + voteOptionsIcons[option])})` }"
-      />
-      <span class="vote-options__button-label">
-        {{ voteOptionsLabels[option] }}
-      </span>
-    </BaseButton>
+    <VoteOptions>
+      <BaseButton
+        slot-scope="optionProps"
+        class="vote-options__button"
+        :style="{ color: optionProps.color }"
+        type="icon"
+        @click="onOptionChoose(optionProps.option)"
+      >
+        <i
+          class="vote-options__button-icon"
+          :style="{
+            content: `url(${require('../../assets/' + optionProps.icon)})`
+          }"
+        />
+        <span class="vote-options__button-label">
+          {{ optionProps.label }}
+        </span>
+      </BaseButton>
+    </VoteOptions>
   </div>
 </template>
 <script>
-import {
-  voteOptions,
-  voteOptionsLabels,
-  voteOptionsColors,
-  voteOptionsIcons,
-} from '@/consts/vote-options.consts';
+import VoteOptions from '@/components/VoteOptions.vue';
 
 export default {
-  name: 'VoteOptions',
-  data: () => ({
-    voteOptions,
-    voteOptionsLabels,
-    voteOptionsColors,
-    voteOptionsIcons,
-  }),
+  name: 'VoteOptionsContainer',
+  components: {
+    VoteOptions,
+  },
   methods: {
     onOptionChoose(type) {
       console.log(type); // eslint-disable-line

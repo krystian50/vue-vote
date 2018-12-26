@@ -1,14 +1,17 @@
 <template>
   <div class="score">
     Score
-    <ul>
-      <li
-        v-for="(value, key) of groupedVotes"
-        :key="key"
-      >
-        {{ key }} - {{ value }}
-      </li>
-    </ul>
+    <VoteOptions v-if="!loading">
+      <template slot-scope="optionProps">
+        <span class="score__group-item-value">
+          {{ groupedVotes && groupedVotes[optionProps.option] ?
+            groupedVotes[optionProps.option] : 0 }}
+        </span>
+        <span class="score__group-item-key">
+          {{ optionProps.label }}
+        </span>
+      </template>
+    </VoteOptions>
     <BaseButton
       type="text"
       label="Reset"
@@ -21,13 +24,17 @@
 import { VOTES_MODULE } from '@/store/modules.types';
 import { createNamespacedHelpers } from 'vuex';
 import { RESET_VOTES } from '@/store/modules/votes/mutations.types';
+import VoteOptions from '@/components/VoteOptions.vue';
 
 const { mapGetters, mapMutations } = createNamespacedHelpers(VOTES_MODULE);
 
 export default {
   name: 'Score',
+  components: {
+    VoteOptions,
+  },
   computed: {
-    ...mapGetters(['groupedVotes']),
+    ...mapGetters(['groupedVotes', 'loading']),
   },
   methods: {
     ...mapMutations({
