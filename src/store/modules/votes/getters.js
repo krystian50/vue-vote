@@ -1,10 +1,4 @@
-import {
-  countBy,
-  values,
-  omit,
-  compose,
-} from 'lodash/fp';
-import { isUndefined } from 'util';
+import { countBy } from 'lodash/fp';
 import { voteOptions } from '@/consts/vote-options.consts';
 
 /**
@@ -15,20 +9,18 @@ import { voteOptions } from '@/consts/vote-options.consts';
 const initializeEmpty = arr => Object.assign({}, ...Array.from(arr, k => ({ [k]: 0 })));
 
 /**
- * @description transforms firebase object into object grouped by vote property
+ * @description transforms firebase array into object grouped by vote property
  */
-const groupVotes = compose(
-  countBy('vote'),
-  values,
-  omit('.key'),
-);
+const groupVotes = countBy('vote');
 
 /**
  * @description contains object with key value, in eg. { no: 0, yes: 0}
  */
 const emptyOptionsObject = initializeEmpty(voteOptions);
+const currentUserId = 'randomUser';
 
 export default {
   groupedVotes: state => ({ ...emptyOptionsObject, ...groupVotes(state.votes) }),
-  loading: state => isUndefined(state.votes),
+  votesLoading: state => state.loadingVotes,
+  hasUserVote: state => state.votes.findIndex(({ userId }) => userId === currentUserId) !== -1,
 };

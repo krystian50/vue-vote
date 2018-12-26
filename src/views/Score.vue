@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!loading"
+    v-if="!votesLoading"
     class="score"
   >
     <VoteOptions>
@@ -25,7 +25,9 @@
     />
   </div>
   <span v-else>
-    Loading
+    <div class="score__loader-container">
+      <BaseLoader />
+    </div>
   </span>
 </template>
 
@@ -43,7 +45,7 @@ export default {
     VoteOptions,
   },
   computed: {
-    ...mapGetters(['groupedVotes', 'loading']),
+    ...mapGetters(['groupedVotes', 'votesLoading']),
   },
   methods: {
     ...mapMutations({
@@ -66,6 +68,12 @@ export default {
 
   &__item-label {
     font-size: 33px;
+  }
+
+  &__loader-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
   }
 }
 </style>
