@@ -1,5 +1,8 @@
 <template>
-  <div class="vote">
+  <div
+    v-if="!hasUserVoted"
+    class="vote"
+  >
     <h1 class="vote__header">
       Do you know?
     </h1>
@@ -23,6 +26,7 @@
       </BaseButton>
     </VoteOptions>
   </div>
+  <AnimatedCheckMark v-else />
 </template>
 <script>
 import { VOTES_MODULE } from '@/store/modules.types';
@@ -30,6 +34,7 @@ import { createNamespacedHelpers } from 'vuex';
 import { ADD_VOTE } from '@/store/modules/votes/mutations.types';
 import Vote from '@/models/vote.model';
 import VoteOptions from '@/components/VoteOptions.vue';
+import AnimatedCheckMark from '@/components/AnimatedCheckMark.vue';
 
 const { mapMutations } = createNamespacedHelpers(VOTES_MODULE);
 
@@ -37,12 +42,17 @@ export default {
   name: 'Vote',
   components: {
     VoteOptions,
+    AnimatedCheckMark,
   },
+  data: () => ({
+    hasUserVoted: false, // will be changed to vuex implementation
+  }),
   methods: {
     ...mapMutations({
       addVote: ADD_VOTE,
     }),
     onVoted(type) {
+      this.hasUserVoted = true;
       this.addVote(new Vote('randomUser', type));
     },
   },

@@ -2,12 +2,16 @@
 import firebase from 'firebase/app';
 
 // These imports load individual services into the firebase namespace.
-import 'firebase/database';
+import 'firebase/firestore';
 
 const config = {
+  projectId: 'test2-206614',
   databaseURL: 'https://test2-206614.firebaseio.com',
 };
-const firebaseApp = firebase.initializeApp(config);
-const db = firebaseApp.database();
 
-export const votesRef = db.ref('votes'); // eslint-disable-line
+firebase.initializeApp(config);
+const db = firebase.firestore();
+db.settings({ timestampsInSnapshots: true });
+
+
+export const votesRef = db.collection('votes'); // eslint-disable-line

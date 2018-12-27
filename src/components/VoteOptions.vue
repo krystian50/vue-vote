@@ -32,7 +32,7 @@ export default {
   }),
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .vote-options {
   padding: 2% 10%;
   width: 100%;

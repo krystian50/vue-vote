@@ -1,5 +1,6 @@
 const initialState = () => ({
-  votes: undefined,
+  votes: [],
+  loadingVotes: false,
 });
 
 export default initialState;
