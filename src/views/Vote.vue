@@ -1,32 +1,36 @@
 <template>
   <div
-    v-if="!hasUserVoted"
     class="vote"
   >
-    <h1 class="vote__header">
-      Do you know?
-    </h1>
-    <VoteOptions>
-      <BaseButton
-        slot-scope="optionProps"
-        class="vote__button"
-        :style="{ color: optionProps.color }"
-        variant="icon"
-        @click="onVoted(optionProps.option)"
-      >
-        <i
-          class="vote__button-icon"
-          :style="{
-            content: `url(${require('../assets/' + optionProps.icon)})`
-          }"
-        />
-        <span class="vote__button-label">
-          {{ optionProps.label }}
-        </span>
-      </BaseButton>
-    </VoteOptions>
+    <div
+      v-if="!hasUserVoted"
+      class="vote__container"
+    >
+      <h1 class="vote__header">
+        Do you know?
+      </h1>
+      <VoteOptions>
+        <BaseButton
+          slot-scope="optionProps"
+          class="vote__button"
+          :style="{ color: optionProps.color }"
+          variant="icon"
+          @click="onVoted(optionProps.option)"
+        >
+          <i
+            class="vote__button-icon"
+            :style="{
+              content: `url(${require('../assets/' + optionProps.icon)})`
+            }"
+          />
+          <span class="vote__button-label">
+            {{ optionProps.label }}
+          </span>
+        </BaseButton>
+      </VoteOptions>
+    </div>
+    <AnimatedCheckMark v-else />
   </div>
-  <AnimatedCheckMark v-else />
 </template>
 <script>
 import { VOTES_MODULE } from '@/store/modules.types';
