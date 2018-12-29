@@ -3,7 +3,7 @@ import { voteOptions } from '@/consts/vote-options.consts';
 
 /**
  * @description transforms array of string into object with 0 values
- * @param {Array<string>} arr  array of keys
+ * @param {Array<String>} arr  array of keys
  * @returns {{key: 0}} object with keys based on arr and 0 as values
  */
 const initializeEmpty = arr => Object.assign({}, ...Array.from(arr, k => ({ [k]: 0 })));

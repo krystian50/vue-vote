@@ -10,7 +10,6 @@ export default {
     state.votes.forEach((vote) => { votesRef.doc(vote.id).delete(); });
   },
   [SET_LOADING_VOTES]: (state, loading) => {
-    console.log(loading);
     state.loadingVotes = loading;
   },
 };
