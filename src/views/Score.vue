@@ -1,34 +1,37 @@
 <template>
-  <div
-    v-if="!votesLoading"
-    class="score"
-  >
-    <VoteOptions>
-      <template slot-scope="optionProps">
-        <div
-          class="score__item"
-          :style="{ color: optionProps.color }"
-        >
-          <span class="score__item-value">
-            {{ groupedVotes && groupedVotes[optionProps.option] }}
-          </span>
-          <span class="score__item-label">
-            {{ optionProps.label }}
-          </span>
-        </div>
-      </template>
-    </VoteOptions>
-    <BaseButton
-      variant="text"
-      label="Reset"
-      @click="reset()"
-    />
-  </div>
-  <span v-else>
-    <div class="score__loader-container">
+  <div class="score">
+    <div
+      v-if="!votesLoading"
+      class="score__container"
+    >
+      <VoteOptions>
+        <template slot-scope="optionProps">
+          <div
+            class="score__item"
+            :style="{ color: optionProps.color }"
+          >
+            <span class="score__item-value">
+              {{ groupedVotes && groupedVotes[optionProps.option] }}
+            </span>
+            <span class="score__item-label">
+              {{ optionProps.label }}
+            </span>
+          </div>
+        </template>
+      </VoteOptions>
+      <BaseButton
+        variant="text"
+        label="Reset"
+        @click="reset()"
+      />
+    </div>
+    <div
+      v-else
+      class="score__loader-container"
+    >
       <BaseLoader />
     </div>
-  </span>
+  </div>
 </template>
 
 <script>
