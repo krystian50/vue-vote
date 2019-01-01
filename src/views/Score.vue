@@ -55,12 +55,11 @@ export default {
   computed: {
     ...mapGetters(VOTES_MODULE, ['groupedVotes', 'votesLoading']),
     ...mapGetters(USER_MODULE, ['superuser']),
-    nonPositiveVotesSum() {
-      return voteOptions.filter(opt => opt !== positiveOptionKey)
-        .reduce((acc, key) => (acc + this.groupedVotes[key]), 0);
+    votesSum() {
+      return voteOptions.reduce((acc, key) => (acc + this.groupedVotes[key]), 0);
     },
     positiveVotesRate() {
-      return this.groupedVotes[positiveOptionKey] / (this.nonPositiveVotesSum || 1);
+      return this.groupedVotes[positiveOptionKey] / (this.votesSum || 1);
     },
   },
   methods: {
