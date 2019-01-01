@@ -20,7 +20,8 @@ export default {
 <style lang="scss">
 .home {
   &__logo {
-    max-width: 60%;
+    width: 60%;
+    max-width: 860px;
     margin: 100px 0;
   }
 }
