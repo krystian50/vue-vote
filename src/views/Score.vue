@@ -93,13 +93,13 @@ export default {
 
   &__rate-container {
     color: #4caf50;
-    font-size: 77px;
+    font-size: 65px;
     line-height: 234px;
     border: 4px solid #4caf50;
     display: block;
-    width: 250px;
-    height: 250px;
-    border-radius: 125px;
+    width: 260px;
+    height: 260px;
+    border-radius: 130px;
     margin: 37px auto;
   }
 }
