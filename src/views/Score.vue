@@ -94,7 +94,7 @@ export default {
   &__rate-container {
     color: #4caf50;
     font-size: 65px;
-    line-height: 234px;
+    line-height: 245px;
     border: 4px solid #4caf50;
     display: block;
     width: 260px;
