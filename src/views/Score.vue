@@ -25,6 +25,7 @@
         </template>
       </VoteOptions>
       <BaseButton
+        v-if="superuser"
         variant="text"
         label="Reset"
         @click="reset()"
@@ -43,7 +44,7 @@
 import { mapGetters, mapMutations } from 'vuex';
 import VoteOptions from '@/components/VoteOptions.vue';
 import { RESET_VOTES } from '@/store/modules/votes/mutations.types';
-import { VOTES_MODULE } from '@/store/modules.types';
+import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
 import { positiveOptionKey, voteOptions } from '@/consts/vote-options.consts';
 
 export default {
@@ -53,6 +54,7 @@ export default {
   },
   computed: {
     ...mapGetters(VOTES_MODULE, ['groupedVotes', 'votesLoading']),
+    ...mapGetters(USER_MODULE, ['superuser']),
     nonPositiveVotesSum() {
       return voteOptions.filter(opt => opt !== positiveOptionKey)
         .reduce((acc, key) => (acc + this.groupedVotes[key]), 0);
