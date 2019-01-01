@@ -6,7 +6,7 @@
     >
       <div class="score__rate-container">
         <span class="score__rate">
-          {{ positiveVotesRate * 100 }} %
+          {{ Math.round(positiveVotesRate * 10000) / 100 }} %
         </span>
       </div>
       <VoteOptions>
