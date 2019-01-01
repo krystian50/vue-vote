@@ -26,6 +26,7 @@
           Score
         </NavItem>
         <NavItem
+          v-if="superuser"
           to="/settings"
         >
           Settings
@@ -41,6 +42,8 @@ import NavbarNav from 'bootstrap-vue/es/components/navbar/navbar-nav';
 import NavbarToggle from 'bootstrap-vue/es/components/navbar/navbar-toggle';
 import NavbarBrand from 'bootstrap-vue/es/components/navbar/navbar-brand';
 import NavItem from 'bootstrap-vue/es/components/nav/nav-item';
+import { mapGetters } from 'vuex';
+import { USER_MODULE } from '@/store/modules.types';
 
 export default {
   components: {
@@ -50,6 +53,9 @@ export default {
     NavbarNav,
     NavbarToggle,
     NavbarBrand,
+  },
+  computed: {
+    ...mapGetters(USER_MODULE, ['superuser']),
   },
 };
 </script>
