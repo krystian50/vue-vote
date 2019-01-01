@@ -3,7 +3,7 @@
     class="vote"
   >
     <div
-      v-if="!hasUserVoted"
+      v-if="!hasUserVoted && !votesLoading"
       class="vote__container"
     >
       <h1 class="vote__header">
@@ -20,7 +20,7 @@
           <i
             class="vote__button-icon"
             :style="{
-              content: `url(${require('../assets/' + optionProps.icon)})`
+              content: `url(${require('@/assets/' + optionProps.icon)})`
             }"
           />
           <span class="vote__button-label">
@@ -29,18 +29,18 @@
         </BaseButton>
       </VoteOptions>
     </div>
-    <AnimatedCheckMark v-else />
+    <AnimatedCheckMark v-else-if="hasUserVoted" />
+    <BaseLoader v-else-if="votesLoading" />
   </div>
 </template>
 <script>
-import { VOTES_MODULE } from '@/store/modules.types';
-import { createNamespacedHelpers } from 'vuex';
+import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
+import { mapGetters, mapMutations } from 'vuex';
 import { ADD_VOTE } from '@/store/modules/votes/mutations.types';
 import Vote from '@/models/vote.model';
 import VoteOptions from '@/components/VoteOptions.vue';
 import AnimatedCheckMark from '@/components/AnimatedCheckMark.vue';
 
-const { mapMutations } = createNamespacedHelpers(VOTES_MODULE);
 
 export default {
   name: 'Vote',
@@ -48,16 +48,16 @@ export default {
     VoteOptions,
     AnimatedCheckMark,
   },
-  data: () => ({
-    hasUserVoted: false, // will be changed to vuex implementation
-  }),
+  computed: {
+    ...mapGetters(USER_MODULE, ['userId']),
+    ...mapGetters(VOTES_MODULE, ['hasUserVoted', 'votesLoading']),
+  },
   methods: {
-    ...mapMutations({
+    ...mapMutations(VOTES_MODULE, {
       addVote: ADD_VOTE,
     }),
     onVoted(type) {
-      this.hasUserVoted = true;
-      this.addVote(new Vote('randomUser', type));
+      this.addVote(new Vote(this.userId, type));
     },
   },
 };

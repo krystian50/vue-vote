@@ -36,11 +36,9 @@
 
 <script>
 import { VOTES_MODULE } from '@/store/modules.types';
-import { createNamespacedHelpers } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { RESET_VOTES } from '@/store/modules/votes/mutations.types';
 import VoteOptions from '@/components/VoteOptions.vue';
-
-const { mapGetters, mapMutations } = createNamespacedHelpers(VOTES_MODULE);
 
 export default {
   name: 'Score',
@@ -48,10 +46,10 @@ export default {
     VoteOptions,
   },
   computed: {
-    ...mapGetters(['groupedVotes', 'votesLoading']),
+    ...mapGetters(VOTES_MODULE, ['groupedVotes', 'votesLoading']),
   },
   methods: {
-    ...mapMutations({
+    ...mapMutations(VOTES_MODULE, {
       reset: RESET_VOTES,
     }),
   },

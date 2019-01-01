@@ -1,5 +1,6 @@
 import { countBy } from 'lodash/fp';
 import { voteOptions } from '@/consts/vote-options.consts';
+import { USER_MODULE } from '@/store/modules.types';
 
 /**
  * @description transforms array of string into object with 0 values
@@ -17,10 +18,12 @@ const groupVotes = countBy('vote');
  * @description contains object with key value, in eg. { no: 0, yes: 0}
  */
 const emptyOptionsObject = initializeEmpty(voteOptions);
-const currentUserId = 'randomUser';
 
 export default {
   groupedVotes: state => ({ ...emptyOptionsObject, ...groupVotes(state.votes) }),
   votesLoading: state => state.loadingVotes,
-  hasUserVote: state => state.votes.findIndex(({ userId }) => userId === currentUserId) !== -1,
+  hasUserVoted: (state, getters, rootState, rootGetters) => {
+    const currentUserId = rootGetters[`${USER_MODULE}/userId`];
+    return state.votes.findIndex(({ userId }) => userId === currentUserId) !== -1;
+  },
 };
