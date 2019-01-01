@@ -21,3 +21,5 @@ export const voteOptionsIcons = {
   duno: 'face-neutral.png',
   no: 'face-sad.png',
 };
+
+export const positiveOptionKey = 'yes';

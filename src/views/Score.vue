@@ -4,6 +4,11 @@
       v-if="!votesLoading"
       class="score__container"
     >
+      <div class="score__rate-container">
+        <span class="score__rate">
+          {{ positiveVotesRate * 100 }} %
+        </span>
+      </div>
       <VoteOptions>
         <template slot-scope="optionProps">
           <div
@@ -35,10 +40,11 @@
 </template>
 
 <script>
-import { VOTES_MODULE } from '@/store/modules.types';
 import { mapGetters, mapMutations } from 'vuex';
-import { RESET_VOTES } from '@/store/modules/votes/mutations.types';
 import VoteOptions from '@/components/VoteOptions.vue';
+import { RESET_VOTES } from '@/store/modules/votes/mutations.types';
+import { VOTES_MODULE } from '@/store/modules.types';
+import { positiveOptionKey, voteOptions } from '@/consts/vote-options.consts';
 
 export default {
   name: 'Score',
@@ -47,6 +53,13 @@ export default {
   },
   computed: {
     ...mapGetters(VOTES_MODULE, ['groupedVotes', 'votesLoading']),
+    nonPositiveVotesSum() {
+      return voteOptions.filter(opt => opt !== positiveOptionKey)
+        .reduce((acc, key) => (acc + this.groupedVotes[key]), 0);
+    },
+    positiveVotesRate() {
+      return this.groupedVotes[positiveOptionKey] / (this.nonPositiveVotesSum || 1);
+    },
   },
   methods: {
     ...mapMutations(VOTES_MODULE, {
@@ -75,6 +88,18 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
+  }
+
+  &__rate-container {
+    color: #4caf50;
+    font-size: 77px;
+    line-height: 234px;
+    border: 4px solid #4caf50;
+    display: block;
+    width: 250px;
+    height: 250px;
+    border-radius: 125px;
+    margin: 37px auto;
   }
 }
 </style>
