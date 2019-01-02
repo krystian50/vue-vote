@@ -1,14 +1,19 @@
 <template functional>
   <div class="score-rate">
     <span>
-      {{ Math.round(props.rate * 10000) / 100 }} %
+      {{ props.rate | percentage }} %
     </span>
   </div>
 </template>
 <script>
+import Percentage from '@/filters/percentage.filter';
+
 const between = (x, min, max) => (x >= min && x <= max);
 
 export default {
+  filters: {
+    Percentage,
+  },
   props: {
     rate: {
       type: Number,
