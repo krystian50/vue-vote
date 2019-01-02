@@ -4,11 +4,7 @@
       v-if="!votesLoading"
       class="score__container"
     >
-      <div class="score__rate-container">
-        <span class="score__rate">
-          {{ Math.round(positiveVotesRate * 10000) / 100 }} %
-        </span>
-      </div>
+      <ScoreRate :rate="positiveVotesRate" />
       <VoteOptions>
         <template slot-scope="optionProps">
           <div
@@ -42,15 +38,17 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import VoteOptions from '@/components/VoteOptions.vue';
 import { RESET_VOTES } from '@/store/modules/votes/mutations.types';
 import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
 import { positiveOptionKey, voteOptions } from '@/consts/vote-options.consts';
+import VoteOptions from '@/components/VoteOptions.vue';
+import ScoreRate from './score/Rate.vue';
 
 export default {
   name: 'Score',
   components: {
     VoteOptions,
+    ScoreRate,
   },
   computed: {
     ...mapGetters(VOTES_MODULE, ['groupedVotes', 'votesLoading']),
@@ -89,18 +87,6 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
-  }
-
-  &__rate-container {
-    color: #4caf50;
-    font-size: 65px;
-    line-height: 245px;
-    border: 4px solid #4caf50;
-    display: block;
-    width: 260px;
-    height: 260px;
-    border-radius: 130px;
-    margin: 37px auto;
   }
 }
 </style>
