@@ -11,9 +11,17 @@
             class="score__item"
             :style="{ color: optionProps.color }"
           >
-            <span class="score__item-value">
-              {{ groupedVotes && groupedVotes[optionProps.option] }}
-            </span>
+            <Transition
+              name="slide-fade"
+              mode="out-in"
+            >
+              <span
+                :key="optionProps.option + groupedVotes && groupedVotes[optionProps.option]"
+                class="score__item-value"
+              >
+                {{ groupedVotes && groupedVotes[optionProps.option] }}
+              </span>
+            </Transition>
             <span class="score__item-label">
               {{ optionProps.label }}
             </span>
@@ -88,5 +96,15 @@ export default {
     height: 100%;
     display: flex;
   }
+}
+
+.slide-fade-enter-active {
+  transition: all .1s ease;
+}
+.slide-fade-leave-active {
+  transition: all .15s ease-in;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(-20px) scale(1.2);
 }
 </style>
