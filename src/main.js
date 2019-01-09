@@ -8,6 +8,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.config.productionTip = false;
+// add dev-tools on prod for devmeeting purpose
+// don't it in real production app
+Vue.config.devtools = true;
 
 new Vue({
   router,
