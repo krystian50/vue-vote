@@ -12,7 +12,7 @@
 
 <script>
 import { VOTES_MODULE } from '@/store/modules.types';
-import { INIT_VOTES_REF } from '@/store/modules/votes/actions.types';
+import { INIT_VOTES_REF } from '@/store/actions.types';
 import { createNamespacedHelpers } from 'vuex';
 import TheHeader from '@/components/TheHeader.vue';
 

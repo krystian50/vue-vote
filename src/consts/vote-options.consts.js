@@ -22,4 +22,4 @@ export const voteOptionsIcons = {
   no: 'face-sad.png',
 };
 
-export const positiveOptionKey = 'yes';
+export const positiveOptionKey = voteOptions[0];

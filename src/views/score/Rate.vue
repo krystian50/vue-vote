@@ -1,5 +1,8 @@
 <template functional>
-  <div class="score-rate">
+  <div
+    class="score-rate"
+    :style="{ color: props.color, 'border-color': props.color }"
+  >
     <span>
       {{ props.rate | percentage }} %
     </span>
@@ -20,15 +23,19 @@ export default {
       required: true,
       validator: val => between(val, 0, 1),
     },
+    color: {
+      type: String,
+      required: false,
+      default: 'black',
+    },
   },
 };
 </script>
 <style lang="scss">
 .score-rate {
-  color: #4caf50;
   font-size: 65px;
   line-height: 245px;
-  border: 4px solid #4caf50;
+  border: 4px solid;
   display: block;
   width: 260px;
   height: 260px;

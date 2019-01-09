@@ -4,7 +4,10 @@
       v-if="!votesLoading"
       class="score__container"
     >
-      <ScoreRate :rate="positiveVotesRate" />
+      <ScoreRate
+        :rate="positiveVotesRate"
+        :color="scoreRateColor"
+      />
       <VoteOptions>
         <template slot-scope="optionProps">
           <div
@@ -46,9 +49,9 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import { RESET_VOTES } from '@/store/modules/votes/mutations.types';
+import { RESET_VOTES } from '@/store/mutations.types';
 import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
-import { positiveOptionKey, voteOptions } from '@/consts/vote-options.consts';
+import { positiveOptionKey, voteOptions, voteOptionsColors } from '@/consts/vote-options.consts';
 import VoteOptions from '@/components/VoteOptions.vue';
 import ScoreRate from './score/Rate.vue';
 
@@ -58,9 +61,15 @@ export default {
     VoteOptions,
     ScoreRate,
   },
+  data: () => ({
+    voteOptionsColors,
+  }),
   computed: {
     ...mapGetters(VOTES_MODULE, ['groupedVotes', 'votesLoading']),
     ...mapGetters(USER_MODULE, ['superuser']),
+    scoreRateColor() {
+      return voteOptionsColors[positiveOptionKey];
+    },
     votesSum() {
       return voteOptions.reduce((acc, key) => (acc + this.groupedVotes[key]), 0);
     },

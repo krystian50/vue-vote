@@ -36,7 +36,7 @@
 <script>
 import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
 import { mapGetters, mapMutations } from 'vuex';
-import { ADD_VOTE } from '@/store/modules/votes/mutations.types';
+import { ADD_VOTE } from '@/store/mutations.types';
 import Vote from '@/models/vote.model';
 import VoteOptions from '@/components/VoteOptions.vue';
 import AnimatedCheckMark from '@/components/AnimatedCheckMark.vue';

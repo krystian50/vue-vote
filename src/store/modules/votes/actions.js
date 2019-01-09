@@ -1,7 +1,7 @@
 import { firebaseAction } from 'vuexfire';
 import { votesRef } from '@/repositories/firebase.repository';
-import { INIT_VOTES_REF, SET_VOTES_REF, ADD_USER_VOTE } from './actions.types';
-import { ADD_VOTE, SET_LOADING_VOTES } from './mutations.types';
+import { INIT_VOTES_REF, SET_VOTES_REF, ADD_USER_VOTE } from '@/store/actions.types';
+import { ADD_VOTE, SET_LOADING_VOTES } from '@/store/mutations.types';
 
 export default {
   [SET_VOTES_REF]: firebaseAction(({ bindFirebaseRef, commit }, ref) => {

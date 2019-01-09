@@ -1,5 +1,5 @@
 import { votesRef } from '@/repositories/firebase.repository';
-import { ADD_VOTE, RESET_VOTES, SET_LOADING_VOTES } from './mutations.types';
+import { ADD_VOTE, RESET_VOTES, SET_LOADING_VOTES } from '@/store/mutations.types';
 
 /* eslint no-param-reassign: ["error", { "props": false }] */
 export default {
