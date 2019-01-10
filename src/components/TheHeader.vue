@@ -44,6 +44,7 @@ import NavbarBrand from 'bootstrap-vue/es/components/navbar/navbar-brand';
 import NavItem from 'bootstrap-vue/es/components/nav/nav-item';
 import { mapGetters } from 'vuex';
 import { USER_MODULE } from '@/store/modules.types';
+import { SUPERUSER } from '@/store/getters.types';
 
 export default {
   components: {
@@ -55,7 +56,9 @@ export default {
     NavbarBrand,
   },
   computed: {
-    ...mapGetters(USER_MODULE, ['superuser']),
+    ...mapGetters(USER_MODULE, {
+      superuser: SUPERUSER,
+    }),
   },
 };
 </script>

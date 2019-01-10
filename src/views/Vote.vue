@@ -3,7 +3,7 @@
     class="vote"
   >
     <div
-      v-if="!hasUserVoted && !votesLoading"
+      v-if="!hasVoted && !loading"
       class="vote__container"
     >
       <h1 class="vote__header">
@@ -29,8 +29,8 @@
         </BaseButton>
       </VoteOptions>
     </div>
-    <AnimatedCheckMark v-else-if="hasUserVoted" />
-    <BaseLoader v-else-if="votesLoading" />
+    <AnimatedCheckMark v-else-if="hasVoted" />
+    <BaseLoader v-else-if="loading" />
   </div>
 </template>
 <script>
@@ -40,7 +40,7 @@ import { ADD_VOTE } from '@/store/mutations.types';
 import Vote from '@/models/vote.model';
 import VoteOptions from '@/components/VoteOptions.vue';
 import AnimatedCheckMark from '@/components/AnimatedCheckMark.vue';
-
+import { USER_ID, HAS_USER_VOTED, VOTES_LOADING } from '@/store/getters.types';
 
 export default {
   name: 'Vote',
@@ -49,8 +49,15 @@ export default {
     AnimatedCheckMark,
   },
   computed: {
-    ...mapGetters(USER_MODULE, ['userId']),
-    ...mapGetters(VOTES_MODULE, ['hasUserVoted', 'votesLoading']),
+    // This is a way to bind multiple modules properties into your component
+    // in App component you can find different aproach
+    ...mapGetters(USER_MODULE, {
+      userId: USER_ID,
+    }),
+    ...mapGetters(VOTES_MODULE, {
+      hasVoted: HAS_USER_VOTED,
+      loading: VOTES_LOADING,
+    }),
   },
   methods: {
     ...mapMutations(VOTES_MODULE, {

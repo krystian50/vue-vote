@@ -1,4 +1,6 @@
+import { USER_ID, SUPERUSER } from '@/store/getters.types';
+
 export default {
-  userId: state => state.userId,
-  superuser: state => state.superuser,
+  [USER_ID]: state => state.userId,
+  [SUPERUSER]: state => state.superuser,
 };

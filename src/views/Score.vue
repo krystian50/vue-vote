@@ -1,7 +1,7 @@
 <template>
   <div class="score">
     <div
-      v-if="!votesLoading"
+      v-if="!loading"
       class="score__container"
     >
       <ScoreRate
@@ -51,6 +51,7 @@
 import { mapGetters, mapMutations } from 'vuex';
 import { RESET_VOTES } from '@/store/mutations.types';
 import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
+import { SUPERUSER, VOTES_GROUPED, VOTES_LOADING } from '@/store/getters.types';
 import { positiveOptionKey, voteOptions, voteOptionsColors } from '@/consts/vote-options.consts';
 import VoteOptions from '@/components/VoteOptions.vue';
 import ScoreRate from './score/Rate.vue';
@@ -65,8 +66,13 @@ export default {
     voteOptionsColors,
   }),
   computed: {
-    ...mapGetters(VOTES_MODULE, ['groupedVotes', 'votesLoading']),
-    ...mapGetters(USER_MODULE, ['superuser']),
+    ...mapGetters(USER_MODULE, {
+      superuser: SUPERUSER,
+    }),
+    ...mapGetters(VOTES_MODULE, {
+      groupedVotes: VOTES_GROUPED,
+      loading: VOTES_LOADING,
+    }),
     scoreRateColor() {
       return voteOptionsColors[positiveOptionKey];
     },
