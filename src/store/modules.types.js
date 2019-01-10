@@ -1,2 +1,3 @@
-export const VOTES_MODULE = 'votes';
-export const USER_MODULE = 'user';
+// also keep '/' at the end of module name
+export const VOTES_MODULE = 'votes/';
+export const USER_MODULE = 'user/';

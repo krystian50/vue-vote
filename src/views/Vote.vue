@@ -36,7 +36,7 @@
 <script>
 import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
 import { mapGetters, mapActions } from 'vuex';
-import { ADD_USER_VOTE } from '@/store/actions.types';
+import { ADD_VOTES } from '@/store/actions.types';
 import Vote from '@/models/vote.model';
 import VoteOptions from '@/components/VoteOptions.vue';
 import AnimatedCheckMark from '@/components/AnimatedCheckMark.vue';
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     ...mapActions(VOTES_MODULE, {
-      addVote: ADD_USER_VOTE,
+      addVote: ADD_VOTES,
     }),
     onVoted(type) {
       this.addVote(new Vote(this.userId, type));

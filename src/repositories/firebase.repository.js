@@ -21,10 +21,8 @@ export default {
   addVote(vote) {
     return votesRef.add({ ...vote });
   },
-  resetVotes() {
-    return votesRef.get().then((snapshotsArray) => {
-      snapshotsArray.forEach(el => votesRef.doc(el.id).delete());
-    });
+  async resetVotes() {
+    const snapshotsArray = await votesRef.get();
+    snapshotsArray.forEach(el => votesRef.doc(el.id).delete());
   },
-
 };
