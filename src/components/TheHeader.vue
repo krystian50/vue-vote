@@ -47,6 +47,7 @@ import { USER_MODULE } from '@/store/modules.types';
 import { SUPERUSER } from '@/store/getters.types';
 
 export default {
+  name: 'TheHeader',
   components: {
     Navbar,
     NavItem,

@@ -18,6 +18,7 @@
 const buttonTypes = ['text', 'icon'];
 
 export default {
+  name: 'BaseButton',
   inheritAttrs: false,
   props: {
     loading: {

@@ -14,6 +14,7 @@ import Percentage from '@/filters/percentage.filter';
 const between = (x, min, max) => (x >= min && x <= max);
 
 export default {
+  name: 'ScoreRate',
   filters: {
     Percentage,
   },
