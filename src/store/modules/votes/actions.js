@@ -1,7 +1,14 @@
 import { firebaseAction } from 'vuexfire';
-import { votesRef } from '@/repositories/firebase.repository';
-import { INIT_VOTES_REF, SET_VOTES_REF, ADD_USER_VOTE } from '@/store/actions.types';
-import { ADD_VOTE, SET_LOADING_VOTES } from '@/store/mutations.types';
+import RepositoryFactory from '@/repositories/repository.factory';
+import {
+  INIT_VOTES_REF,
+  SET_VOTES_REF,
+  ADD_USER_VOTE,
+  RESET_VOTES,
+} from '@/store/actions.types';
+import { SET_LOADING_VOTES } from '@/store/mutations.types';
+
+const firebaseRepository = RepositoryFactory.get('firebase');
 
 export default {
   [SET_VOTES_REF]: firebaseAction(({ bindFirebaseRef, commit }, ref) => {
@@ -11,12 +18,16 @@ export default {
   }),
 
   [INIT_VOTES_REF]: ({ dispatch }) => {
-    dispatch(SET_VOTES_REF, votesRef);
+    dispatch(SET_VOTES_REF, firebaseRepository.votesRef);
   },
 
-  [ADD_USER_VOTE]: ({ commit }) => {
+  [RESET_VOTES]: () => {
+    firebaseRepository.resetVotes();
+  },
+
+  [ADD_USER_VOTE]: (state, vote) => {
     // some extra logic will be here to prevent multiple votes from the same user
     // it will be connected with user module
-    commit(ADD_VOTE);
+    firebaseRepository.addVote(vote);
   },
 };

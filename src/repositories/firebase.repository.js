@@ -15,3 +15,15 @@ db.settings({ timestampsInSnapshots: true });
 
 
 export const votesRef = db.collection('votes'); // eslint-disable-line
+export default {
+  votesRef,
+  addVote(vote) {
+    return votesRef.add({ ...vote });
+  },
+  resetVotes() {
+    return votesRef.get().then((snapshotsArray) => {
+      snapshotsArray.forEach(el => votesRef.doc(el.id).delete());
+    });
+  },
+
+};

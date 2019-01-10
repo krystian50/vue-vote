@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-import { RESET_VOTES } from '@/store/mutations.types';
+import { mapGetters, mapActions } from 'vuex';
+import { RESET_VOTES } from '@/store/actions.types';
 import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
 import { SUPERUSER, VOTES_GROUPED, VOTES_LOADING } from '@/store/getters.types';
 import { positiveOptionKey, voteOptions, voteOptionsColors } from '@/consts/vote-options.consts';
@@ -84,7 +84,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(VOTES_MODULE, {
+    ...mapActions(VOTES_MODULE, {
       reset: RESET_VOTES,
     }),
   },

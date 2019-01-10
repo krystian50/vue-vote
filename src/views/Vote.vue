@@ -35,8 +35,8 @@
 </template>
 <script>
 import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
-import { mapGetters, mapMutations } from 'vuex';
-import { ADD_VOTE } from '@/store/mutations.types';
+import { mapGetters, mapActions } from 'vuex';
+import { ADD_USER_VOTE } from '@/store/actions.types';
 import Vote from '@/models/vote.model';
 import VoteOptions from '@/components/VoteOptions.vue';
 import AnimatedCheckMark from '@/components/AnimatedCheckMark.vue';
@@ -60,8 +60,8 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations(VOTES_MODULE, {
-      addVote: ADD_VOTE,
+    ...mapActions(VOTES_MODULE, {
+      addVote: ADD_USER_VOTE,
     }),
     onVoted(type) {
       this.addVote(new Vote(this.userId, type));
