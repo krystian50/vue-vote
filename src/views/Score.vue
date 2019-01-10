@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import { RESET_VOTES } from '@/store/actions.types';
 import { VOTES_MODULE, USER_MODULE } from '@/store/modules.types';
 import { SUPERUSER, VOTES_GROUPED, VOTES_LOADING } from '@/store/getters.types';
@@ -84,9 +84,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions(VOTES_MODULE, {
-      reset: RESET_VOTES,
-    }),
+    // Another way to use store properties
+    // Other are in Vote and App components
+    reset() {
+      this.$store.dispatch(VOTES_MODULE + RESET_VOTES);
+    },
   },
 };
 </script>

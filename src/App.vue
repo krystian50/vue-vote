@@ -18,6 +18,7 @@ import TheHeader from '@/components/TheHeader.vue';
 
 // This is an example how you can map your modules properties(actions, mutations, getters, state)
 // In other components you can find another aproach, choose one of them or create your own one
+// Check Vote and Score components
 const { mapActions: mapVotesActions } = createNamespacedHelpers(VOTES_MODULE);
 
 export default {

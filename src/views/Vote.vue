@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     // This is a way to bind multiple modules properties into your component
-    // in App component you can find different aproach
+    // in App and Score components you can find different aproach
     ...mapGetters(USER_MODULE, {
       userId: USER_ID,
     }),
