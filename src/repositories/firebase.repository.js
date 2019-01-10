@@ -14,7 +14,8 @@ const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
 
-export const votesRef = db.collection('votes'); // eslint-disable-line
+const votesRef = db.collection('votes');
+
 export default {
   votesRef,
   addVote(vote) {
