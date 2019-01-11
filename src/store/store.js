@@ -2,8 +2,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
 import { firebaseMutations } from 'vuexfire';
-import votes from './modules/votes/store';
-import user from './modules/user/store';
+import votes from './modules/votes';
+import user from './modules/user';
 
 Vue.use(Vuex);
 
