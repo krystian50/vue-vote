@@ -1,7 +1,9 @@
-import FirebaseRepository from './firebase.repository';
+import VotesRepository from './votes.repository';
+import SettingsRepository from './settings.repository';
 
 const repositories = {
-  firebase: FirebaseRepository,
+  votes: VotesRepository,
+  settings: SettingsRepository,
   // other repositories ...
 };
 

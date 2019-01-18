@@ -13,16 +13,4 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
-
-const votesRef = db.collection('votes');
-
-export default {
-  votesRef,
-  addVote(vote) {
-    return votesRef.add({ ...vote });
-  },
-  async resetVotes() {
-    const snapshotsArray = await votesRef.get();
-    snapshotsArray.forEach(el => votesRef.doc(el.id).delete());
-  },
-};
+export default db;

@@ -8,7 +8,7 @@ import {
 } from '@/store/actions.types';
 import { SET_LOADING_VOTES } from '@/store/mutations.types';
 
-const firebaseRepository = RepositoryFactory.get('firebase');
+const votesRepository = RepositoryFactory.get('votes');
 
 export default {
   [SET_VOTES_REF]: firebaseAction(
@@ -20,16 +20,14 @@ export default {
   ),
 
   [INIT_VOTES_REF]: ({ dispatch }) => {
-    dispatch(SET_VOTES_REF, firebaseRepository.votesRef);
+    dispatch(SET_VOTES_REF, votesRepository.votesRef);
   },
 
   [RESET_VOTES]: () => {
-    firebaseRepository.resetVotes();
+    votesRepository.resetVotes();
   },
 
   [ADD_VOTES]: (state, vote) => {
-    // some extra logic will be here to prevent multiple votes from the same user
-    // it will be connected with user module
-    firebaseRepository.addVote(vote);
+    votesRepository.addVote(vote);
   },
 };

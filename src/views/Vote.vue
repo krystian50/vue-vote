@@ -29,7 +29,7 @@
         </BaseButton>
       </VoteOptions>
     </div>
-    <AnimatedCheckMark v-else-if="hasVoted" />
+    <CheckMark v-else-if="hasVoted" />
     <BaseLoader v-else-if="loading" />
   </div>
 </template>
@@ -39,14 +39,14 @@ import { mapGetters, mapActions } from 'vuex';
 import { ADD_VOTES } from '@/store/actions.types';
 import Vote from '@/models/vote.model';
 import VoteOptions from '@/components/VoteOptions.vue';
-import AnimatedCheckMark from '@/components/AnimatedCheckMark.vue';
+import CheckMark from '@/components/CheckMark.vue';
 import { USER_ID, HAS_USER_VOTED, VOTES_LOADING } from '@/store/getters.types';
 
 export default {
   name: 'Vote',
   components: {
     VoteOptions,
-    AnimatedCheckMark,
+    CheckMark,
   },
   computed: {
     // This is a way to bind multiple modules properties into your component
