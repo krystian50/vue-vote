@@ -16,5 +16,5 @@ new Vue({
 }).$mount('#app');
 
 // add dev-tools on prod for devmeeting purpose
-// don't it in real production app
+// don't do it in real production app
 Vue.config.devtools = true;
